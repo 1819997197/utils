@@ -13,23 +13,23 @@ OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/init.o $(BUILD_DIR)/interrupt.o \
       $(BUILD_DIR)/bitmap.o
 ##############     c代码编译     ###############
 $(BUILD_DIR)/main.o: kernel/main.c lib/kernel/print.h \
-        lib/stdint.h kernel/init.h lib/string.h kernel/memory.h
+        lib/kernel/stdint.h kernel/init.h lib/string.h kernel/memory.h
 	$(CC) $(CFLAGS) $< -o $@
 
 $(BUILD_DIR)/init.o: kernel/init.c kernel/init.h lib/kernel/print.h \
-        lib/stdint.h kernel/interrupt.h device/timer.h kernel/memory.h
+        lib/kernel/stdint.h kernel/interrupt.h device/timer.h kernel/memory.h
 	$(CC) $(CFLAGS) $< -o $@
 
 $(BUILD_DIR)/interrupt.o: kernel/interrupt.c kernel/interrupt.h \
-        lib/stdint.h kernel/global.h lib/kernel/io.h lib/kernel/print.h
+        lib/kernel/stdint.h kernel/global.h lib/kernel/io.h lib/kernel/print.h
 	$(CC) $(CFLAGS) $< -o $@
 
-$(BUILD_DIR)/timer.o: device/timer.c device/timer.h lib/stdint.h\
+$(BUILD_DIR)/timer.o: device/timer.c device/timer.h lib/kernel/stdint.h\
         lib/kernel/io.h lib/kernel/print.h
 	$(CC) $(CFLAGS) $< -o $@
 
 $(BUILD_DIR)/debug.o: kernel/debug.c kernel/debug.h \
-        lib/kernel/print.h lib/stdint.h kernel/interrupt.h
+        lib/kernel/print.h lib/kernel/stdint.h kernel/interrupt.h
 	$(CC) $(CFLAGS) $< -o $@
 	
 $(BUILD_DIR)/string.o: lib/string.c lib/string.h \
@@ -37,7 +37,7 @@ $(BUILD_DIR)/string.o: lib/string.c lib/string.h \
 	$(CC) $(CFLAGS) $< -o $@
 	
 $(BUILD_DIR)/memory.o: kernel/memory.c kernel/memory.h \
-	lib/stdint.h lib/kernel/bitmap.h kernel/debug.h lib/string.h
+	lib/kernel/stdint.h lib/kernel/bitmap.h kernel/debug.h lib/string.h
 	$(CC) $(CFLAGS) $< -o $@
 	
 $(BUILD_DIR)/bitmap.o: lib/kernel/bitmap.c lib/kernel/bitmap.h \
@@ -62,7 +62,7 @@ mk_dir:
 
 hd:
 	dd if=$(BUILD_DIR)/kernel.bin \
-           of=/home/cooiboi/bochs/hd60M.img \
+           of=/data/os/c.img \
            bs=512 count=200 seek=9 conv=notrunc
 
 clean:
