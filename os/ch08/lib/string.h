@@ -13,5 +13,5 @@ int8_t strcmp(const char* a,const char* b);
 char* strchr(const char* str,const char ch);
 char* strrchr(const char* str,const uint8_t ch);
 char* strcat(char* dsc_,const char* src_);
-char* strchrs(const char* str,uint8_t ch);
+uint32_t strchrs(const char* str,uint8_t ch);
 #endif

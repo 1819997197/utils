@@ -111,7 +111,7 @@ char* strcat(char* dsc_,const char* src_)
 }
 
 /* 在字符串str中查找指定字符ch出现的次数 */
-char* strchrs(const char* str,uint8_t ch)
+uint32_t strchrs(const char* str,uint8_t ch)
 {
     ASSERT(str != NULL);
     uint32_t ch_cnt = 0;
